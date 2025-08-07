@@ -14,6 +14,9 @@ def collisions():
     global running
 
     if pygame.sprite.spritecollide(player, meteor_sprites, True, pygame.sprite.collide_mask):
+        damage_sound = pygame.mixer.Sound(join("audio", "damage.ogg"))
+        damage_sound.set_volume(0.1)
+        damage_sound.play()
         running = False
 
     for laser in laser_sprites:
@@ -21,6 +24,7 @@ def collisions():
         if collided_sprites:
             laser.kill()
             Explosion(anim.surface["explosion"], laser.rect.midtop, all_sprites)
+            anim.anim_sound.play()
 
 
 def score():
@@ -63,6 +67,9 @@ player = Player(img.surface["player"], img.surface["laser"], [all_sprites, laser
 
 meteor_event = pygame.event.custom_type()
 pygame.time.set_timer(meteor_event, 500)
+game_music = pygame.mixer.Sound(join("audio", "game_music.wav"))
+game_music.set_volume(0.1)
+game_music.play(loops = -1)
 # Meteor(img.surface["invader"], (300, -10), all_sprites)
 while running:
     dt = clock.tick(75) / 1000

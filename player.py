@@ -9,6 +9,8 @@ class Player(Entity):
         self.can_shoot = True
         self.shoot_time = 0
         self.cooldown_duration = 500
+        self.laser_sound = pygame.mixer.Sound(join("audio", "laser.wav"))
+        self.laser_sound.set_volume(0.1)
 
         # mask_surf = mask.to_surface()
         # mask_surf = set_colorkey((0,0,0))
@@ -34,5 +36,6 @@ class Player(Entity):
             Laser(self.laser_surface, self.rect.topright, (self.groups(), self.laser_groups))
             self.can_shoot = False
             self.shoot_time = pygame.time.get_ticks()
+            self.laser_sound.play()
 
         self.shoot_timer()
