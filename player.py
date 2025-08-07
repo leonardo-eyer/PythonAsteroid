@@ -29,9 +29,9 @@ class Player(Entity):
         # recent_keys = pygame.key.get_just_pressed()
         if keys[pygame.K_SPACE] and self.can_shoot:
             # shouldn't be creating entities
-            Laser(self.laser_surface, self.rect.topleft, (self.groups, self.laser_groups))
-            Laser(self.laser_surface, self.rect.midtop, (self.groups, self.laser_groups))
-            Laser(self.laser_surface, self.rect.topright, (self.groups, self.laser_groups))
+            Laser(self.laser_surface, self.rect.topleft, (self.groups() , self.laser_groups))
+            Laser(self.laser_surface, self.rect.midtop, (self.groups(), self.laser_groups))
+            Laser(self.laser_surface, self.rect.topright, (self.groups(), self.laser_groups))
             self.can_shoot = False
             self.shoot_time = pygame.time.get_ticks()
 

@@ -10,4 +10,8 @@ IMAGES = {
     "invader": join("images", "invader.png")
 }
 
+ANIMATION = {
+    "explosion": [join("images", "explosion", f"{i}.png") for i in range(21)]
+}
+
 FONT = join("images", "Oxanium-Bold.ttf")

@@ -3,9 +3,11 @@ from random import randint
 import pygame
 
 from imageHandler import *
+from animationHandler import *
 from player import *
 from meteor import *
 from invader import *
+from explosion import *
 from settings import *
 
 def collisions():
@@ -18,6 +20,8 @@ def collisions():
         collided_sprites = pygame.sprite.spritecollide(laser, meteor_sprites, True)
         if collided_sprites:
             laser.kill()
+            Explosion(anim.surface["explosion"], laser.rect.midtop, all_sprites)
+
 
 def score():
     current_time = pygame.time.get_ticks() // 100
@@ -42,6 +46,10 @@ img.load("laser")
 img.load("player")
 img.load("meteor")
 img.load("invader")
+
+anim = AnimationHandler()
+anim.load("explosion")
+
 font = pygame.font.Font(FONT, 40)
 
 
