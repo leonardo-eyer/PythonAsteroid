@@ -4,7 +4,8 @@ from settings import *
 class Entity(pygame.sprite.Sprite):
     def __init__(self, surface, groups, pos = WINDOW_CENTER, orientation = "center"):
         super().__init__(groups)
-        self.image = surface
+        self.original_surface = surface
+        self.image = self.original_surface
         self.rect = self.image.get_frect(**{orientation:pos})
         self.direction = pygame.math.Vector2(0, 0)
         self.speed = 300

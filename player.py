@@ -3,12 +3,15 @@ from laser import *
 
 class Player(Entity):
     def __init__(self, surface, laser_surface, groups):
-        super().__init__(surface, groups)
-        self.groups = groups
+        super().__init__(surface, groups[0])
+        self.laser_groups = groups[1]
         self.laser_surface = laser_surface
         self.can_shoot = True
         self.shoot_time = 0
         self.cooldown_duration = 500
+
+        # mask_surf = mask.to_surface()
+        # mask_surf = set_colorkey((0,0,0))
 
     def shoot_timer(self):
         if not self.can_shoot:
@@ -26,9 +29,9 @@ class Player(Entity):
         # recent_keys = pygame.key.get_just_pressed()
         if keys[pygame.K_SPACE] and self.can_shoot:
             # shouldn't be creating entities
-            Laser(self.laser_surface, self.rect.topleft, self.groups)
-            Laser(self.laser_surface, self.rect.midtop, self.groups)
-            Laser(self.laser_surface, self.rect.topright, self.groups)
+            Laser(self.laser_surface, self.rect.topleft, (self.groups, self.laser_groups))
+            Laser(self.laser_surface, self.rect.midtop, (self.groups, self.laser_groups))
+            Laser(self.laser_surface, self.rect.topright, (self.groups, self.laser_groups))
             self.can_shoot = False
             self.shoot_time = pygame.time.get_ticks()
 

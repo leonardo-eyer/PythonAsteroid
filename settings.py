@@ -9,3 +9,5 @@ IMAGES = {
     "player": join("images", "player.png"),
     "invader": join("images", "invader.png")
 }
+
+FONT = join("images", "Oxanium-Bold.ttf")
